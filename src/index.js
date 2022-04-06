@@ -1,110 +1,41 @@
-// const name = "富田";
+import "./styles.css";
 
-// const message1 = `私の名前は${name}です。`;
-// console.debug(message1);
+const onClickAdd = () => {
+  // テキストボックスの値を取得し初期化
+  const inputText = document.getElementById("add-text").value;
+  document.getElementById("add-text").value = "";
 
-/**
- * アロー関数
- */
-// 従来の関数
-// function func1(str) {
-//   return str;
-// }
-// const func1 = function (str) {
-//   return str;
-// };
-// console.debug(func1("func1です"));
+  // divタグの生成
+  const div = document.createElement("div");
+  div.className = "list-row";
 
-// const func2 = (str) => str;
-// console.debug(func2("func2です"));
+  const li = document.createElement("li");
+  li.appendChild(div);
+  div.innerText = inputText;
 
-// /**
-//  * 分割代入
-//  */
-// const myProfile = {
-//   name: "富田",
-//   age: 42
-// };
+  // ボタンの追加
+  const completeButton = document.createElement("button");
+  completeButton.innerText = "完了";
+  completeButton.addEventListener("click", () => {
+    alert();
+  });
 
-// const messageProfile = `私は${myProfile.name}です。${myProfile.age}です`;
-// console.debug(messageProfile);
+  const deleteButton = document.createElement("button");
+  deleteButton.innerText = "削除";
+  deleteButton.addEventListener("click", () => {
+    //ボタンの親要素のliを削除する
+    const deleteTarget = deleteButton.parentNode.parentNode;
+    console.debug(deleteTarget);
+    document.getElementById("imcomplete-list").removeChild(deleteTarget);
+  });
 
-// const { name, age } = myProfile;
+  div.appendChild(completeButton);
+  div.appendChild(deleteButton);
 
-// const messageProfile2 = `私は${name}ですよ。${age}です`;
-// console.debug(messageProfile2);
+  document.getElementById("imcomplete-list").appendChild(li);
+  // console.debug(div);
+};
 
-/**
- * デフォルト値など
- */
-// const sayHello = (name = "馬鹿野郎") => console.debug(`こんにちは${name}さん`);
-
-// sayHello();
-
-/**
- * スプレッド構文
- */
-// 配列の展開
-// const arr1 = [5, 2, 3];
-// console.debug(arr1);
-// console.debug(...arr1);
-
-// const sumfunc = (num1, num2) => console.debug(num1 + num2);
-// sumfunc(...arr1);
-// // 余計な引数は無視されるのか…
-
-// まとめる
-// const arr2 = [1, 2, 3, 4, 5];
-// const [num1, num2, ...arr3] = arr2;
-// console.debug(num1);
-// console.debug(num2);
-// console.debug(arr3);
-
-// 配列のコピー、結合
-// const arr4 = [10, 20];
-// const arr5 = [30, 40];
-// const arr6 = [...arr4];
-
-// console.debug(arr6);
-// const arr7 = [...arr4,...arr5];
-// console.debug(arr7);
-// const arr8 = arr4;
-// arr8[0] = 100;
-// console.debug(`arr8=${arr8}`);
-// console.debug(arr4);
-// console.debug(arr7);
-
-const nameArr = ["たなか", "やまだ", "かわさき"];
-
-// const nameArr2 = nameArr.map((name) => {
-//   return name + "はやられた";
-// });
-
-// console.debug(nameArr2);
-
-// nameArr.map((name, index) => console.debug(`${index}番、${name}`));
-
-// const numArr = [1, 2, 3, 4, 5];
-
-// const numArr2 = numArr.filter((num) => {
-//   return num % 2 === 1;
-// });
-
-// console.debug(numArr2);
-// const newNameArr = nameArr.map((name) => {
-//   if (name === "かわさき") {
-//     return name;
-//   } else {
-//     return `${name}はやられた`;
-//   }
-// });
-// console.debug(newNameArr);
-
-/**
- * 参考演算子
- */
-// const num = "1300";
-
-// console.debug(num === 1 ? "a" : "b");
-
-// console.debug(typeof num === "number" ? num.toLocaleString() : "ばぐ");
+document
+  .getElementById("add-button")
+  .addEventListener("click", () => onClickAdd());
